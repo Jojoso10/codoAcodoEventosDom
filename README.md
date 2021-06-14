@@ -1,86 +1,140 @@
 # codoAcodoEventosDom
 Practica de eventos en el DOM
-git init creará un nuevo repositorio local GIT. El siguiente comando de Git creará un repositorio en el directorio actual:
-git init
-Como alternativa, puedes crear un repositorio dentro de un nuevo directorio especificando el nombre del proyecto:
-git init [nombre del proyecto]
-git clone se usa para copiar un repositorio. Si el repositorio está en un servidor remoto, usa:
-git clone nombredeusuario@host:/path/to/repository
-A la inversa, ejecuta el siguiente comando básico para copiar un repositorio local:
-git clone /path/to/repository
-git add se usa para agregar archivos al área de preparación. Por ejemplo, el siguiente comando de Git básico indexará el archivo temp.txt:
-git add <temp.txt>
-git commit creará una instantánea de los cambios y la guardará en el directorio git.
-git commit –m “El mensaje que acompaña al commit va aquí”
-Ten en cuenta que los cambios confirmados no llegarán al repositorio remoto.
 
-git config puede ser usado para establecer una configuración específica de usuario, como el email, nombre de usuario y tipo de formato, etc. Por ejemplo, el siguiente comando se usa para establecer un email:
-git config --global user.email tuemail@ejemplo.com
-La opción -global le dice a GIT que vas a usar ese correo electrónico para todos los repositorios locales. Si quieres utilizar diferentes correos electrónicos para diferentes repositorios, usa el siguiente comando:
-git config --local user.email tuemail@ejemplo.com
-git status muestra la lista de los archivos que se han cambiado junto con los archivos que están por ser preparados o confirmados.
-git status
-git push se usa para enviar confirmaciones locales a la rama maestra del repositorio remoto. Aquí está la estructura básica del código:
-git push  origin <master>
-Reemplaza <master> con la rama en la que quieres enviar los cambios cuando no quieras enviarlos a la rama maestra.
+1. Git clone
+Git clone es un comando para descargarte el código fuente existente desde un repositorio remoto (como Github, por ejemplo). En otras palabras, Git clone básicamente realiza una copia idéntica de la última versión de un proyecto en un repositorio y la guarda en tu ordenador.
 
-git checkout crea ramas y te ayuda a navegar entre ellas. Por ejemplo, el siguiente comando crea una nueva y automáticamente se cambia a ella:
-command git checkout -b <branch-name>
-Para cambiar de una rama a otra, sólo usa:
-git checkout <branch-name>
-git remote te permite ver todos los repositorios remotos. El siguiente comando listará todas las conexiones junto con sus URLs:
-git remote -v
-Para conectar el repositorio local a un servidor remoto, usa este comando:
-git remote add origin <host-or-remoteURL>
-Por otro lado, el siguiente comando borrará una conexión a un repositorio remoto especificado:
-git remote <nombre-del-repositorio>
-git branch se usa para listar, crear o borrar ramas. Por ejemplo, si quieres listar todas las ramas presentes en el repositorio, el comando debería verse así:
+Hay un par de formas de descargar el código fuente, pero principalmente yo prefiero clonar de la forma con https:
+
+git clone <https://link-con-nombre-del-repositorio>
+Por ejemplo, si queremos descargar un proyecto desde Github, todo lo que necesitamos es hacer clic sobre el botón verde (clonar o descargar), copiar la URL de la caja y pegarla después del comando git clone que he mostrado más arriba.
+
+
+Código fuente de Bootstrap en Github
+Esto hará una copia del proyecto en tu espacio de trabajo local y así podrás empezar a trabajar con él.
+
+2. Git branch
+Las ramas (branch) son altamente importantes en el mundo de Git. Usando ramas, varios desarrolladores pueden trabajar en paralelo en el mismo proyecto simultáneamente. Podemos usar el comando git branch para crearlas, listarlas y eliminarlas.
+
+Creando una nueva rama:
+
+git branch <nombre-de-la-rama>
+Este comando creará una rama en local. Para enviar (push) la nueva rama al repositorio remoto, necesitarás usar el siguiente comando:
+
+git push <nombre-remoto> <nombre-rama>
+Visualización de ramas:
+
 git branch
-Si quieres borrar una rama, usa:
- git branch -d <branch-name>
-git pull fusiona todos los cambios que se han hecho en el repositorio local con el directorio de trabajo local.
-git pull
-git merge se usa para fusionar una rama con otra rama activa:
-git merge <branch-name>
-git diff se usa para hacer una lista de conflictos. Para poder ver conflictos con respecto al archivo base, usa:
-git diff --base <file-name>
-El siguiente comando se usa para ver los conflictos que hay entre ramas antes de fusionarlas:
-git diff <source-branch> <target-branch>
-Para ver una lista de todos los conflictos presentes usa:
-git diff
-git tag marca commits específicos. Los desarrolladores lo usan para marcar puntos de lanzamiento como v1.0 y v2.0.
-git tag 1.1.0 <instert-commitID-here>
-git log se usa para ver el historial del repositorio listando ciertos detalles de la confirmación. Al ejecutar el comando se obtiene una salida como ésta:
-commit 15f4b6c44b3c8344caasdac9e4be13246e21sadw
-Author: Alex Hunter <alexh@gmail.com>
-Date:   Mon Oct 1 12:56:29 2016 -0600
-git reset sirve para resetear el index y el directorio de trabajo al último estado de confirmación.
-git reset - -hard HEAD
-git rm se puede usar para remover archivos del index y del directorio de trabajo.
-git rm filename.txt
-git stash guardará momentáneamente los cambios que no están listos para ser confirmados. De esta manera, pudes volver al proyecto más tarde.
-git stash
-git show se usa para mostrar información sobre cualquier objeto git.
-git show
-git fetch le permite al usuario buscar todos los objetos de un repositorio remoto que actualmente no se encuentran en el directorio de trabajo local.
-git fetch origin
-git ls-tree te permite ver un objeto de árbol junto con el nombre y modo de cada ítem, y el valor blob de SHA-1. Si quieres ver el HEAD, usa:
-git ls-tree HEAD
-git cat-file se usa para ver la información de tipo y tamaño de un objeto del repositorio. Usa la opción -p junto con el valor SHA-1 del objeto para ver la información de un objeto específico, por ejemplo:
-git cat-file –p d670460b4b4aece5915caf5c68d12f560a9fe3e4
-git grep le permite al usuario buscar frases y palabras específicas en los árboles de confirmación, el directorio de trabajo y en el área de preparación. Para buscar por www.hostinger.com en todos los archivos, usa:
-git grep “www.hostinger.com”
-gitk muestra la interfaz gráfica para un repositorio local. Simplemente ejecuta:
-gitk
-git instaweb te permite explorar tu repositorio local en la interfaz GitWeb. Por ejemplo:
-git instaweb –http=webrick
-git gc limpiará archivos innecesarios y optimizará el repositorio local.
-git gc
-git archive le permite al usuario crear archivos zip o tar que contengan los constituyentes de un solo árbol de repositorio. Por ejemplo:
-git archive - -format=tar master
-git prune elimina los objetos que no tengan ningún apuntador entrante.
-git prune
-git fsck realiza una comprobación de integridad del sistema de archivos git e identifica cualquier objeto corrupto
-git fsck
-git rebase se usa para aplicar ciertos cambios de una rama en otra. Por ejemplo:
-git rebase master
+git branch --list
+Borrar una rama:
+
+git branch -d <nombre-de-la-rama>
+3. Git checkout
+Este es también uno de los comandos más utilizados en Git. Para trabajar en una rama, primero tienes que cambiarte a ella. Usaremos git checkout principalmente para cambiarte de una rama a otra. También lo podemos usar para chequear archivos y commits.
+
+git checkout <nombre-de-la-rama>
+Hay algunos pasos que debes seguir para cambiarte exitosamente entre ramas:
+
+Los cambios en tu rama actual tienen que ser confirmados o almacenados en el guardado rápido (stash) antes de que cambies de rama.
+La rama a la que te quieras cambiar debe existir en local.
+Hay también un comando de acceso directo que te permite crear y cambiarte a esa rama al mismo tiempo:
+
+git checkout -b <nombre-de-tu-rama>
+Este comando crea una nueva rama en local (-b viene de rama (branch)) y te cambia a la rama que acabas de crear.
+
+4. Git status
+El comando de git status nos da toda la información necesaria sobre la rama actual.
+
+git status
+Podemos encontrar información como:
+
+Si la rama actual está actualizada
+Si hay algo para confirmar, enviar o recibir (pull).
+Si hay archivos en preparación (staged), sin preparación(unstaged) o que no están recibiendo seguimiento (untracked)
+Si hay archivos creados, modificados o eliminados
+
+git status nos da información acerca del archivo y las ramas
+5. Git add
+Cuando creamos, modificamos o eliminamos un archivo, estos cambios suceden en local y no se incluirán en el siguiente commit (a menos que cambiemos la configuración).
+
+Necesitamos usar el comando git add para incluir los cambios del o de los archivos en tu siguiente commit.
+
+Añadir un único archivo:
+
+git add <archivo>
+Añadir todo de una vez:
+
+git add -A
+Si revisas la captura de pantalla que he dejado en la sección 4, verás que hay nombres de archivos en rojo - esto significa que los archivos sin preparación. Estos archivos no serán incluidos en tus commits hasta que no los añadas.
+
+Para añadirlos, necesitas usar el git add:
+
+
+Los archivos en verde han sido añadidos a la preparación gracias al git add
+Importante: El comando git add no cambia el repositorio y los cambios que no han sido guardados hasta que no utilicemos el comando de confirmación git commit.
+
+6. Git commit
+Este sea quizás el comando más utilizado de Git. Una vez que se llega a cierto punto en el desarrollo, queremos guardar nuestros cambios (quizás después de una tarea o asunto específico).  
+
+Git commit es como establecer un punto de control en el proceso de desarrollo al cual puedes volver más tarde si es necesario.
+
+También necesitamos escribir un mensaje corto para explicar qué hemos desarrollado o modificado en el código fuente.
+
+git commit -m "mensaje de confirmación"
+Importante: Git commit guarda tus cambios únicamente en local.
+
+7. Git push
+Después de haber confirmado tus cambios, el siguiente paso que quieres dar es enviar tus cambios al servidor remoto. Git push envía tus commits al repositorio remoto.
+
+git push <nombre-remoto> <nombre-de-tu-rama>
+De todas formas, si tu rama ha sido creada recientemente, puede que tengas que cargar y subir tu rama con el siguiente comando:
+
+git push --set-upstream <nombre-remoto> <nombre-de-tu-rama>
+or
+
+git push -u origin <nombre-de-tu-rama>
+Importante: Git push solamente carga los cambios que han sido confirmados.
+
+8. Git pull
+El comando git pull se utiliza para recibir actualizaciones del repositorio remoto. Este comando es una combinación del git fetch y del git merge lo cual significa que cundo usemos el git pull recogeremos actualizaciones del repositorio remoto (git fetch) e inmediatamente aplicamos estos últimos cambios en local (git merge).
+
+git pull <nombre-remoto>
+Esta operación puede generar conflictos que tengamos que resolver manualmente.
+
+9. Git revert
+A veces, necesitaremos deshacer los cambios que hemos hecho. Hay varias maneras para deshacer nuestros cambios en local y/o en remoto (dependiendo de lo que necesitemos), pero necesitaremos utilizar cuidadosamente estos comandos para evitar borrados no deseados.
+
+Una manera segura para deshacer nuestras commits es utilizar git revert. Para ver nuestro historial de commits, primero necesitamos utilizar el  git log -- oneline:
+
+
+histórico de git en mi rama master
+Entonces, solo necesitamos especificar el código de comprobación que encontrarás junto al commit que queremos deshacer:
+
+git revert 3321844
+Después de esto, verás una pantalla como la de abajo -tan solo presiona shift + q para salir:
+
+
+El comando git revert deshará el commit que le hemos indicado, pero creará un nuevo commit deshaciendo la anterior:
+
+
+commit generado con el git revert
+La ventaja de utilizar git revert es que no afecta al commit histórico. Esto significa que puedes seguir viendo todos los commits en tu histórico, incluso los revertidos.
+
+Otra medida de seguridad es que todo sucede en local a no ser que los enviemos al repositorio remoto. Por esto es que git revert es más seguro de usar y es la manera preferida para deshacer los commits.
+
+10. Git merge
+Cuando ya hayas completado el desarrollo de tu proyecto en tu rama y todo funcione correctamente, el último paso es fusionar la rama con su rama padre (dev o master). Esto se hace con el comando git merge.
+
+Git merge básicamente integra las características de tu rama con todos los commits realizados a las ramas dev (o master).  Es importante que recuerdes que tienes que estar en esa rama específica que quieres fusionar  con tu rama de características.
+
+Por ejemplo, cuando quieres fusionar tu rama de características en la rama dev:
+
+Primero, debes cambiarte a la rama dev:
+
+git checkout dev
+Antes de fusionar, debes actualizar tu rama dev local:
+
+git fetch
+Por último, puedes fusionar tu rama de características en la rama dev:
+
+git merge <nombre-de-la-rama>
